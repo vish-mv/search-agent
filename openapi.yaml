@@ -1,0 +1,79 @@
+openapi: 3.0.3
+info:
+  title: Simple LangGraph Agent
+  version: 0.1.0
+  description: OpenAI-powered LangGraph agent API with web search, datetime, and calculator tools.
+servers:
+  - url: /
+paths:
+  /health:
+    get:
+      summary: Health check
+      operationId: health
+      responses:
+        "200":
+          description: Service is running.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - status
+                properties:
+                  status:
+                    type: string
+                    example: ok
+  /agent:
+    post:
+      summary: Run the agent
+      operationId: runAgent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AgentRequest"
+            examples:
+              datetime:
+                summary: Date and time question
+                value:
+                  query: What date and time is it?
+              webSearch:
+                summary: Web search question
+                value:
+                  query: Who is the CEO of OpenAI?
+              calculator:
+                summary: Calculation
+                value:
+                  query: Calculate 12 * (4 + 3)
+      responses:
+        "200":
+          description: Agent response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AgentResponse"
+        "422":
+          description: Invalid request body.
+        "500":
+          description: Agent configuration or runtime error.
+components:
+  schemas:
+    AgentRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: Natural-language user query for the agent.
+          example: Who is the CEO of OpenAI?
+    AgentResponse:
+      type: object
+      required:
+        - answer
+      properties:
+        answer:
+          type: string
+          description: Final answer produced by the agent.
+          example: Sam Altman is the CEO of OpenAI.
