@@ -1,0 +1,23 @@
+[project]
+name = "simple-langgraph-agent"
+version = "0.1.0"
+description = "A tiny LangGraph agent with optional Serper web search."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi>=0.110.0",
+    "langchain-openai>=0.1.0",
+    "langgraph>=0.2.0",
+    "python-dotenv>=1.0.0",
+    "uvicorn[standard]>=0.27.0",
+]
+
+[project.scripts]
+simple-agent = "simple_langgraph_agent.agent:main"
+
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
