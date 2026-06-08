@@ -72,6 +72,12 @@ Open the interactive API docs at:
 http://127.0.0.1:8000/docs
 ```
 
+For cloud platforms that ask for an OpenAPI contract, select:
+
+```text
+openapi.yaml
+```
+
 ## How It Works
 
 The graph is a LangGraph tool-calling agent:
