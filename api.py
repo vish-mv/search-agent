@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-from .agent import run_agent
+from agent import run_agent
 
 
 app = FastAPI(title="Simple LangGraph Agent")
