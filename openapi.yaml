@@ -23,6 +23,23 @@ paths:
                   status:
                     type: string
                     example: ok
+  /test:
+    get:
+      summary: Test endpoint
+      operationId: test
+      responses:
+        "200":
+          description: Test is running.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - status
+                properties:
+                  status:
+                    type: string
+                    example: test ok
   /agent:
     post:
       summary: Run the agent

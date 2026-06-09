@@ -21,6 +21,9 @@ class AgentResponse(BaseModel):
 def health() -> dict[str, str]:
     return {"status": "ok"}
 
+@app.get("/test")
+def test() -> dict[str, str]:
+    return {"status": "test ok"}
 
 @app.post("/agent", response_model=AgentResponse)
 def run_agent_endpoint(request: AgentRequest) -> AgentResponse:
